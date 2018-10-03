@@ -24,6 +24,7 @@ class FacebookAdsPlanner extends React.Component {
             descriptionText: "",
             adUrl: "",
             adUrlDomain: "",
+            imageFile: "",
             imageUrl: "",
             
             postRemaining: this.maxPostLength,
@@ -100,6 +101,26 @@ class FacebookAdsPlanner extends React.Component {
         
         
         
+        // Afbeelding ingevoegd
+        
+        if (name == "imageFile") {
+            let reader = new FileReader();
+            let file = target.files[0];
+            
+            reader.onloadend = () => {
+                this.setState({
+                    imageFile: file,
+                    imageUrl: reader.result
+                    
+                });
+                
+            }
+            reader.readAsDataURL(file);
+            
+        }
+        
+        
+        
         // nieuwe waarde opslaan
         
         this.setState({
@@ -129,28 +150,28 @@ class FacebookAdsPlanner extends React.Component {
                     <span>{this.state.descriptionRemaining} tekens over</span>
                     <label htmlFor="ads-planner-ad-url">Link</label>
                     <input type="text" name="adUrl" id="ads-planner-ad-url" value={this.state.adUrl} onChange={this.handleChange} />
-                    <label htmlFor="ads-planner-image-url">Afbeelding (URL)</label>
-                    <input type="text" name="imageUrl" id="ads-planner-image-url" value={this.state.imageUrl} onChange={this.handleChange} />
+                    <label htmlFor="ads-planner-image">Afbeelding</label>
+                    <input type="file" name="imageFile" id="ads-planner-image" onChange={this.handleChange} />
                 </form>
                 <div id="ads-planner-preview">
-                    <div class="post-header">
-                        <img src="img/pageicon.jpg" class="page-icon" />
-                        <div class="fb-title-container">
-                            <h3 class="fb-title">Testpagina</h3>
-                            <span class="sponsored-text">Gesponsord · <img src="img/globe.png" /></span>
+                    <div className="post-header">
+                        <img src="img/pageicon.jpg" className="page-icon" />
+                        <div className="fb-title-container">
+                            <h3 className="fb-title">Testpagina</h3>
+                            <span className="sponsored-text">Gesponsord · <img src="img/globe.png" /></span>
                         </div>
-                        <img src="img/meatballs.png" class="post-menu" />
+                        <img src="img/meatballs.png" className="post-menu" />
                     </div>
-                    <p class="post-text">{this.state.postText}</p>
-                    <a href={this.state.adUrl} target="_blank" class="ad-preview">
+                    <p className="post-text">{this.state.postText}</p>
+                    <a href={this.state.adUrl} target="_blank" className="ad-preview">
                         <img src={this.state.imageUrl} />
-                        <div class="ad-footer">
+                        <div className="ad-footer">
                             <h4>{this.state.adUrlDomain}</h4>
                             <h3>{this.state.headlineText}</h3>
                             <p>{this.state.descriptionText}</p>
                         </div>
                     </a>
-                    <div class="fb-actions">
+                    <div className="fb-actions">
                         <span>Vind ik leuk</span>
                         <span>Opmerking plaatsen</span>
                         <span>Delen</span>

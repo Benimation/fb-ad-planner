@@ -24,6 +24,18 @@
   outline: none;
   padding: 6px;
 }
+#ads-planner-form input[type=file] {
+  border: none;
+}
+#ads-planner-form input[type=file]::-webkit-file-upload-button {
+  border-radius: 0;
+  border: none;
+  color: #fff;
+  background-color: #0984e3;
+  padding: 10px 20px;
+  margin-left: -6px;
+  outline: none;
+}
 #ads-planner-form span {
   color: grey;
   font-size: 12px;
